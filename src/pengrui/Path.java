@@ -1,4 +1,6 @@
-/*package pengrui;
+//test
+
+package pengrui;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -28,13 +30,25 @@ import generateTopology.Main;
 
 public class Path {
 	private static String shortestPath="G:/地图/djjkstra最短路径输出/路网拓扑结果/收费站最短距离20180508225319.csv";
-	private static String shortestLinkFile="E:/work/outTopology/贵州最短路径";
+	private static String shortestLinkFile="I:/pangqian/roadLink/outTopology/浙江最短路径";
 	private static String tollStation="E:/work/新建文件夹 (2)/收费站.xlsx";
 	private static String chedao="E:/work/新建文件夹 (2)/shoufeichedao.csv";
-	private static String nameOdLink="E:/work/outTopology/河南中间文件/henannameOdLink.csv";
+	private static String nameOdLink="I:/pangqian/roadLink/outTopology/浙江中间文件/zhejiangnameOdLink.csv";
 	
 	private static String trade="D:/2018-01";
 	private static String provName="E:/work/outTopology/guizhou.csv";
+	
+	public static void main(String[] args) throws ParseException, IOException{
+		getNameOdLink(shortestLinkFile,nameOdLink);//读取最短路径文件下，每个出入站名称对应的最短路径的一系列路链值
+//	    Map<String,String> mapNameOdLink=readNameOdLink(nameOdLink);//读取出入站名称对应的最短路径的一系列路链值，以入口站名称、出口站名称为key，路链值为value读入hashmap
+//		Map<String,String> mapChedaoName=matchChedaoName(shortestLinkFile,tollStation,chedao,"GUI_ZHOU");//将poi中车道名称与收费数据中收费站名称对应，并以收费车道id为key，对上的收费站名称为value，存入hashmap
+   	// 
+//		readTrade(trade,provName,"41");//从收费数据中挑选河北数据，精简字段输出,第三个参数代表省份编号
+    //	testTrade("D:/test","E:/work/outTopology/test.csv","50");
+	//	statics1("HE_NAN");
+//		getInfuluence();
+//		testify();
+	}
 	
 	public static String getValue(Cell cell){
 		if(cell.getCellType()==cell.CELL_TYPE_NUMERIC){
@@ -48,12 +62,12 @@ public class Path {
 			return cell.getStringCellValue();
 		}
 	}
-	*//**
+	/**
 	 * 通过收费车道id前14位匹配收费站id，得到每个收费车道所在的收费站名称
 	 * @param inTollStation 收费站数据
 	 * @param inCheDao	收费车道数据
 	 * @return
-	 *//*
+	 */
 	public static Map<String,String> getCheDaoToll(String inTollStation,String inCheDao,String prov){
 		Map<String,String> mapToll=new HashMap<>();
 		Map<String,String> mapCheDaoTollName=new HashMap<>();
@@ -114,12 +128,12 @@ public class Path {
 //		}
 		return mapCheDaoTollName;
 	}
-	*//**
+	/**
 	 * 从最短路径输出的各文件名（poi收费站名）和收费数据中的收费站名匹配，输出车道号对应的poi收费站名
 	 * @param shortestLinkFile 最短路径输出的各文件名（poi收费站名）路径
 	 * @param inTollStation	收费站数据
 	 * @param inChedao	收费车道数据
-	 *//*
+	 */
 	public static Map<String,String> matchChedaoName(String shortestLinkFile,String inTollStation,String inChedao,String prov){
 		Map<String,String> mapCheDaoTollName=getCheDaoToll(inTollStation,inChedao,prov);//保存车道id对应的收费站名称
 		File file=new File(shortestLinkFile);
@@ -565,7 +579,7 @@ public class Path {
 	}
 	
 	
-	public static void staticsJam(String provName)
+/*	public static void staticsJam(String provName)
 	{
 		
 		Map<String,String> mapChedaoName=matchChedaoName(shortestLinkFile,tollStation,chedao,provName);
@@ -625,7 +639,7 @@ public class Path {
 		
 		
 		
-	}
+	}*/
 
 	
 	
@@ -634,16 +648,5 @@ public class Path {
 	
 	
 	
-	public static void main(String[] args) throws ParseException, IOException{
-		//getNameOdLink(shortestLinkFile,nameOdLink);//读取最短路径文件下，每个出入站名称对应的最短路径的一系列路链值
-//	    Map<String,String> mapNameOdLink=readNameOdLink(nameOdLink);//读取出入站名称对应的最短路径的一系列路链值，以入口站名称、出口站名称为key，路链值为value读入hashmap
-		Map<String,String> mapChedaoName=matchChedaoName(shortestLinkFile,tollStation,chedao,"GUI_ZHOU");//将poi中车道名称与收费数据中收费站名称对应，并以收费车道id为key，对上的收费站名称为value，存入hashmap
-   	// 
-		readTrade(trade,provName,"41");//从收费数据中挑选河北数据，精简字段输出,第三个参数代表省份编号
-    //	testTrade("D:/test","E:/work/outTopology/test.csv","50");
-	//	statics1("HE_NAN");
-//		getInfuluence();
-//		testify();
-	}
+
 }
-*/
