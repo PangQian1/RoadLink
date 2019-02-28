@@ -40,18 +40,18 @@ public class Path {
 	
 	public static void main(String[] args) throws ParseException, IOException{
 		getNameOdLink(shortestLinkFile,nameOdLink);//读取最短路径文件下，每个出入站名称对应的最短路径的一系列路链值
-//	    Map<String,String> mapNameOdLink=readNameOdLink(nameOdLink);//读取出入站名称对应的最短路径的一系列路链值，以入口站名称、出口站名称为key，路链值为value读入hashmap
-//		Map<String,String> mapChedaoName=matchChedaoName(shortestLinkFile,tollStation,chedao,"GUI_ZHOU");//将poi中车道名称与收费数据中收费站名称对应，并以收费车道id为key，对上的收费站名称为value，存入hashmap
-   	// 
-//		readTrade(trade,provName,"41");//从收费数据中挑选河北数据，精简字段输出,第三个参数代表省份编号
-    //	testTrade("D:/test","E:/work/outTopology/test.csv","50");
-	//	statics1("HE_NAN");
-//		getInfuluence();
-//		testify();
+/*	    Map<String,String> mapNameOdLink=readNameOdLink(nameOdLink);//读取出入站名称对应的最短路径的一系列路链值，以入口站名称、出口站名称为key，路链值为value读入hashmap
+		Map<String,String> mapChedaoName=matchChedaoName(shortestLinkFile,tollStation,chedao,"GUI_ZHOU");//将poi中车道名称与收费数据中收费站名称对应，并以收费车道id为key，对上的收费站名称为value，存入hashmap
+   	 
+		readTrade(trade,provName,"41");//从收费数据中挑选河北数据，精简字段输出,第三个参数代表省份编号
+    	testTrade("D:/test","E:/work/outTopology/test.csv","50");
+		statics1("HE_NAN");
+		getInfuluence();
+		testify();*/
 	}
 	
 	public static String getValue(Cell cell){
-		if(cell.getCellType()==cell.CELL_TYPE_NUMERIC){
+		if(cell.getCellType()==Cell.CELL_TYPE_NUMERIC){
 			DecimalFormat df = new DecimalFormat("0"); 
 			String strCell = df.format(cell.getNumericCellValue());
 			return strCell;
@@ -134,6 +134,12 @@ public class Path {
 	 * @param inTollStation	收费站数据
 	 * @param inChedao	收费车道数据
 	 */
+	
+/*	private static String shortestPath="G:/地图/djjkstra最短路径输出/路网拓扑结果/收费站最短距离20180508225319.csv";
+	private static String shortestLinkFile="I:/pangqian/roadLink/outTopology/浙江最短路径";
+	private static String tollStation="E:/work/新建文件夹 (2)/收费站.xlsx";
+	private static String chedao="E:/work/新建文件夹 (2)/shoufeichedao.csv";
+	private static String nameOdLink="I:/pangqian/roadLink/outTopology/浙江中间文件/zhejiangnameOdLink.csv";*/
 	public static Map<String,String> matchChedaoName(String shortestLinkFile,String inTollStation,String inChedao,String prov){
 		Map<String,String> mapCheDaoTollName=getCheDaoToll(inTollStation,inChedao,prov);//保存车道id对应的收费站名称
 		File file=new File(shortestLinkFile);

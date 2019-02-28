@@ -219,26 +219,23 @@ public class Main {
 	public static BufferedWriter getWriter(String out,String encoding){
 		File file=new File(out);
 		BufferedWriter writer=null;
-	if(!file.exists())
-		{
+		if(!file.exists()){
 			try{
-			OutputStreamWriter output=new OutputStreamWriter(new FileOutputStream(file),encoding);
-			writer=new BufferedWriter(output);
+				OutputStreamWriter output=new OutputStreamWriter(new FileOutputStream(file),encoding);
+				writer=new BufferedWriter(output);
 		    }catch(Exception e){
-			e.printStackTrace();
+		    	e.printStackTrace();
 		    }
-		}
-	else
-	{
-		try{
-			OutputStreamWriter output=new OutputStreamWriter(new FileOutputStream(file,true),encoding);
-			writer=new BufferedWriter(output);
+		}else{
+			try{
+				OutputStreamWriter output=new OutputStreamWriter(new FileOutputStream(file,true),encoding);
+				writer=new BufferedWriter(output);
 		    }catch(Exception e){
-			e.printStackTrace();
-		    }	
+				e.printStackTrace();
+	    	}	
 		
 		
-	}
+		}
 		return writer;
 	}
 	public static void readCMid(String path,Map<Integer,String> idWithPointMessage){
