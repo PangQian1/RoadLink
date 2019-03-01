@@ -23,17 +23,34 @@ import dao.RoadLink;
 import dao.StationInMap;
 import util.Config;
 
+
+/*"I:/pangqian/data/地图数据/secret/road2018q2/zhejiang2/浙江2.mid",
+"I:/pangqian/data/地图数据/secret/road2018q2/zhejiang2/浙江2.mif",
+"I:/pangqian/data/地图数据/level2/level2/zhejiang2/other/PNamezhejiang2.mid",
+"I:/pangqian/data/地图数据/level2/level2/zhejiang2/index/POIzhejiang2.mid",
+"I:/pangqian/data/地图数据/secret/road2018q2/zhejiang2/road/R_LNamezhejiang2.mid",
+"I:/pangqian/data/地图数据/secret/road2018q2/zhejiang2/road/R_Namezhejiang2.mid"*/
+
+/*"I:/pangqian/data/地图数据/secret/road2018q2/chongqing/chongqing.mid",
+"I:/pangqian/data/地图数据/secret/road2018q2/chongqing/chongqing.mif",
+"I:/pangqian/data/地图数据/level2/level2/chongqing/other/PNamechongqing.mid",
+"I:/pangqian/data/地图数据/level2/level2/chongqing/index/POIchongqing.mid",
+"I:/pangqian/data/地图数据/secret/road2018q2/chongqing/road/R_LNamechongqing.mid",
+"I:/pangqian/data/地图数据/secret/road2018q2/chongqing/road/R_Namechongqing.mid"*/
+
+//331 332 行有两个地址路径需要改
+
 public class Main {
 	public static void main(String[] args) {
 		HashMap<String, RoadLink> id_Roadlink = Main.getTopology_ID_RoadLink_RoadName_Station(
-				"I:/pangqian/data/地图数据/secret/road2018q2/zhejiang2/浙江2.mid",
-				"I:/pangqian/data/地图数据/secret/road2018q2/zhejiang2/浙江2.mif",
-				"I:/pangqian/data/地图数据/level2/level2/zhejiang2/other/PNamezhejiang2.mid",
-				"I:/pangqian/data/地图数据/level2/level2/zhejiang2/index/POIzhejiang2.mid",
-				"I:/pangqian/data/地图数据/secret/road2018q2/zhejiang2/road/R_LNamezhejiang2.mid",
-				"I:/pangqian/data/地图数据/secret/road2018q2/zhejiang2/road/R_Namezhejiang2.mid");
+				"I:/pangqian/data/地图数据/secret/road2018q2/chongqing/chongqing.mid",
+				"I:/pangqian/data/地图数据/secret/road2018q2/chongqing/chongqing.mif",
+				"I:/pangqian/data/地图数据/level2/level2/chongqing/other/PNamechongqing.mid",
+				"I:/pangqian/data/地图数据/level2/level2/chongqing/index/POIchongqing.mid",
+				"I:/pangqian/data/地图数据/secret/road2018q2/chongqing/road/R_LNamechongqing.mid",
+				"I:/pangqian/data/地图数据/secret/road2018q2/chongqing/road/R_Namechongqing.mid");
 		try {
-			BufferedWriter writer=new BufferedWriter(new FileWriter("I:/pangqian/roadLink/outTopology/zhejiang2Topology.csv"));//得到高速公路的网络拓扑图
+			BufferedWriter writer=new BufferedWriter(new FileWriter("I:/pangqian/roadLink/outTopology/cqTopology.csv"));//得到高速公路的网络拓扑图
 			for(Iterator<RoadLink> iterator=id_Roadlink.values().iterator();iterator.hasNext();){
 				RoadLink loop_roadlink=iterator.next();
 				writer.write(loop_roadlink.toString()+"\r\n");
@@ -313,8 +330,8 @@ public class Main {
 		// List<String> route_id_array = new ArrayList<String>(300);
 		try {
 			String line = null;
-			String Czhejiang2Mid="I:/pangqian/data/地图数据/secret/road2018q2/zhejiang2/road/Czhejiang2.mid";
-			String Czhejiang2Mif="I:/pangqian/data/地图数据/secret/road2018q2/zhejiang2/road/Czhejiang2.mif";
+			String Czhejiang2Mid="I:/pangqian/data/地图数据/secret/road2018q2/chongqing/road/Cchongqing.mid";
+			String Czhejiang2Mif="I:/pangqian/data/地图数据/secret/road2018q2/chongqing/road/Cchongqing.mif";
 	    	Map<Integer,String> idWithPointMessage=new HashMap<>();
 	    	readCMid(Czhejiang2Mid,idWithPointMessage);
 	    	Map<String,List<String>> mapGpsLinkId=addGpsPointCmid(Czhejiang2Mif,idWithPointMessage);

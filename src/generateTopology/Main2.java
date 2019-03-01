@@ -30,14 +30,14 @@ public class Main2 {
 	 */
 	public static void main(String[] args) {
 		HashMap<String, RoadLink> id_Roadlink = Main2.getTopology_ID_RoadLink_RoadName_Station(
-				"G:/最新地图/road2018q2/chongqing/road/Rchongqing.mid",
-				"G:/最新地图/road2018q2/chongqing/road/Rchongqing.mif",
-				"G:/最新地图/road2018q2/chongqing/road/Cchongqing.mid",
-				"G:/最新地图/road2018q2/chongqing/road/Cchongqing.mif",
-				"G:/最新地图/road2018q2/chongqing/road/R_LNamechongqing.mid",
-				"G:/最新地图/road2018q2/chongqing/road/R_Namechongqing.mid");
+				"I:/pangqian/data/地图数据/secret/road2018q2/chongqing/chongqing.mid",
+				"I:/pangqian/data/地图数据/secret/road2018q2/chongqing/chongqing.mif",
+				"I:/pangqian/data/地图数据/secret/road2018q2/chongqing/road/Cchongqing.mid",
+				"I:/pangqian/data/地图数据/secret/road2018q2/chongqing/road/Cchongqing.mif",
+				"I:/pangqian/data/地图数据/secret/road2018q2/chongqing/road/R_LNamechongqing.mid",
+				"I:/pangqian/data/地图数据/secret/road2018q2/chongqing/road/R_Namechongqing.mid");
 		try {
-			BufferedWriter writer=new BufferedWriter(new FileWriter("G:/重庆/cqTopology.csv"));
+			BufferedWriter writer=new BufferedWriter(new FileWriter("I:/pangqian/roadLink/outTopology/cqTopology.csv"));
 			for(Iterator<RoadLink> iterator=id_Roadlink.values().iterator();iterator.hasNext();){
 				RoadLink loop_roadlink=iterator.next();
 				writer.write(loop_roadlink.toString()+"\r\n");

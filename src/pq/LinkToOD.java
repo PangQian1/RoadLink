@@ -15,8 +15,11 @@ import generateTopology.Main;
 
 public class LinkToOD {
 	
-	private static String nameOdLink="I:/pangqian/roadLink/outTopology/浙江中间文件/zhejiangnameOdLink.csv";
-	private static String linkToODPath="I:/pangqian/roadLink/linkToOD/浙江/zhejiangLinkToOd.csv";
+	//private static String nameOdLink="I:/pangqian/roadLink/outTopology/浙江中间文件/zhejiangnameOdLink.csv";
+	//private static String linkToODPath="I:/pangqian/roadLink/linkToOD/浙江/zhejiangLinkToOd.csv";
+	
+	private static String nameOdLink="I:/pangqian/roadLink/outTopology/重庆中间文件/chongqingnameOdLink.csv";
+	private static String linkToODPath="I:/pangqian/roadLink/linkToOD/chongqingLinkToOd.csv";
 	
 	public static void main(String[] args) {
 		
@@ -38,8 +41,8 @@ public class LinkToOD {
 			System.out.println(inOdLink + "  start reading....");
 			while((line = reader.readLine()) != null){
 				String[] data=line.split(";",3);
-				String inStationName=data[0];
-				String outStationName=data[1];
+				String inStationName=data[0].replaceAll("收费站", "");
+				String outStationName=data[1].replaceAll("收费站", "");
 				String OD = inStationName + "," + outStationName;//OD内部用逗号分隔，OD之间用分号分隔
 				String[] linkPath=data[2].split(",");
 				

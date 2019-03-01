@@ -30,10 +30,13 @@ import generateTopology.Main;
 
 public class Path {
 	private static String shortestPath="G:/地图/djjkstra最短路径输出/路网拓扑结果/收费站最短距离20180508225319.csv";
-	private static String shortestLinkFile="I:/pangqian/roadLink/outTopology/浙江最短路径";
+	//private static String shortestLinkFile="I:/pangqian/roadLink/outTopology/浙江最短路径";
 	private static String tollStation="E:/work/新建文件夹 (2)/收费站.xlsx";
 	private static String chedao="E:/work/新建文件夹 (2)/shoufeichedao.csv";
-	private static String nameOdLink="I:/pangqian/roadLink/outTopology/浙江中间文件/zhejiangnameOdLink.csv";
+	//private static String nameOdLink="I:/pangqian/roadLink/outTopology/浙江中间文件/zhejiangnameOdLink.csv";
+	
+	private static String shortestLinkFile="I:/pangqian/roadLink/outTopology/重庆最短路径";
+	private static String nameOdLink="I:/pangqian/roadLink/outTopology/重庆中间文件/chongqingnameOdLink.csv";
 	
 	private static String trade="D:/2018-01";
 	private static String provName="E:/work/outTopology/guizhou.csv";

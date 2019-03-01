@@ -14,10 +14,10 @@ public class Config {
 	
 	public static String SHORTEST_PATH_DIR="G:/地图/输出数据/";
 	public static String OD_DIJKSTRA_DIR="I:/pangqian/roadLink/outTopology/浙江最短路径\\";
-	public static String STATION_SHORTEST_PATH_LENGTH="I:/pangqian/roadLink/outTopology/浙江最短路径\\收费站最短距离"+DF.format(new Date())+".csv";  //生成的中间文件
+	public static String STATION_SHORTEST_PATH_LENGTH="I:/pangqian/roadLink/outTopology\\收费站最短距离"+DF.format(new Date())+".csv";  //生成的中间文件
 	
 	public static String SHORTEST_PATH_DIR_CQ="G:/重庆/输出数据/";
-	public static String OD_DIJKSTRA_DIR_CQ="G:/重庆/djjkstra最短路径输出/OD最短路径（不同收费广场）\\";
-	public static String STATION_SHORTEST_PATH_LENGTH_CQ="G:/重庆/djjkstra最短路径输出/路网拓扑结果\\收费站最短距离"+DF.format(new Date())+".csv";  //生成的中间文件
+	public static String OD_DIJKSTRA_DIR_CQ="I:/pangqian/roadLink/outTopology/重庆最短路径\\";
+	public static String STATION_SHORTEST_PATH_LENGTH_CQ="I:/pangqian/roadLink/outTopology/重庆收费站最短距离"+DF.format(new Date())+".csv";  //生成的中间文件
 
 }
