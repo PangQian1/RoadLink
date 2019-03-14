@@ -37,7 +37,8 @@ public class DijkstraStation {
 		try {
 //			BufferedReader file_roadlink = new BufferedReader(new FileReader(Config.ROADLINK_MIDDLE_FILE_SUB_OPT));// 读路链拓扑文件
 			//BufferedReader file_roadlink = new BufferedReader(new FileReader("E:/work/outTopology/zhejiangTopologytest1.csv"));// 读路链拓扑文件
-			BufferedReader file_roadlink = new BufferedReader(new FileReader("I:/pangqian/roadLink/outTopology/zhejiang2Topology.csv"));// 读路链拓扑文件
+			//BufferedReader file_roadlink = new BufferedReader(new FileReader("I:/pangqian/roadLink/outTopology/zhejiang2Topology.csv"));// 读路链拓扑文件
+			BufferedReader file_roadlink = new BufferedReader(new FileReader("I:/pangqian/roadLink/outTopology/guizhouTopology.csv"));// 读路链拓扑文件
 			//BufferedReader file_roadlink = new BufferedReader(new FileReader("I:/pangqian/roadLink/outTopology/cqTopology.csv"));// 读路链拓扑文件
 			id_RoadLink_hash = new HashMap<String, RoadLink>();
 			stationID_RoadLinkID_hash = new HashMap<String, List<String>>(); //<收费站名，收费站所在的路链>

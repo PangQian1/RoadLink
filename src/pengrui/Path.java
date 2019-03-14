@@ -35,8 +35,8 @@ public class Path {
 	private static String chedao="E:/work/新建文件夹 (2)/shoufeichedao.csv";
 	//private static String nameOdLink="I:/pangqian/roadLink/outTopology/浙江中间文件/zhejiangnameOdLink.csv";
 	
-	private static String shortestLinkFile="I:/pangqian/roadLink/outTopology/重庆最短路径";
-	private static String nameOdLink="I:/pangqian/roadLink/outTopology/重庆中间文件/chongqingnameOdLink.csv";
+	private static String shortestLinkFile="I:/pangqian/roadLink/outTopology/贵州最短路径";
+	private static String nameOdLink="I:/pangqian/roadLink/outTopology/贵州中间文件/guizhounameOdLink.csv";
 	
 	private static String trade="D:/2018-01";
 	private static String provName="E:/work/outTopology/guizhou.csv";
