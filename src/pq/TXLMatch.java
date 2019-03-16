@@ -19,7 +19,7 @@ public class TXLMatch {
 	private static String odToLinkOriginPath = "I:/pangqian/roadLink/outTopology/odToLink(origin)/";
 	private static String odtxlPath = "I:/pangqian/roadLink/odtxl";
 	private static String zhangXingTongPath = "I:/pangqian/roadLink/掌行通收费站.csv";
-	private static String odToLinkPath = "I:/pangqian/roadLink/outTopology/odToLink/";
+	private static String odToLinkPath = "I:/pangqian/roadLink/outTopology/odToLink_txl/";
 	
 	public static void main(String[] args) {
 		
@@ -53,10 +53,12 @@ public class TXLMatch {
 					String data[] = line.split(",", 4);
 					String enStationID = data[0];//入口收费站id
 					String exStationID = data[1];
-					String pro = GetProByCode.getRealeaser(data[2]);//省份
+					String proCode = data[2];//省份编码
+					String proPinyin = GetProByCode.getRealeaserPinyin(proCode);//省份(pinyin)
+					String pro = GetProByCode.getRealeaser(proCode);
 					String txl = data[3];//通行量
 					
-					if(!pro.equals(list.get(i).substring(0, index))) {
+					if(!proPinyin.equals(list.get(i).substring(0, index))) {
 						continue;
 					}
 					
@@ -68,10 +70,11 @@ public class TXLMatch {
 						//System.out.println(od);
 						if(odLinkOriMap.containsKey(od)) {
 							String path = odLinkOriMap.get(od);
-							if(odPathMap.containsKey(od + "," + txl)) {
+							String keyInfo = od + "," + txl + "," + proCode + "," + pro;
+							if(odPathMap.containsKey(keyInfo)) {
 								System.out.println(line + "  " + od + "," + txl);
 							}
-							odPathMap.put(od + "," + txl, path);
+							odPathMap.put(keyInfo, path);
 							count++;
 						}
 					
