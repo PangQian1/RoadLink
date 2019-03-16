@@ -2,14 +2,17 @@ package pq;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.poi.xssf.streaming.examples.Outlining;
 
 import generateTopology.Main;
 
@@ -17,13 +20,12 @@ public class LinkToOD {
 	
 	//private static String nameOdLink="I:/pangqian/roadLink/outTopology/浙江中间文件/zhejiangnameOdLink.csv";
 	//private static String linkToODPath="I:/pangqian/roadLink/linkToOD/浙江/zhejiangLinkToOd.csv";
-	
-	private static String nameOdLink="I:/pangqian/roadLink/outTopology/重庆中间文件/chongqingnameOdLink.csv";
-	private static String linkToODPath="I:/pangqian/roadLink/linkToOD/chongqingLinkToOd.csv";
+	private static String odToLinkTxlPath = "I:/pangqian/roadLink/outTopology/odToLink_txl/";
+	private static String linkToODPath="I:/pangqian/roadLink/linkToOD/";
 	
 	public static void main(String[] args) {
 		
-		linkToOD(nameOdLink, linkToODPath);
+		linkToOD(odToLinkTxlPath, linkToODPath);
 	}
 	
 	/**
@@ -31,47 +33,52 @@ public class LinkToOD {
 	 * @param inOdLink
 	 * @param outLinkToOd
 	 */
-	public static void linkToOD(String inOdLink, String outLinkToOd){
+	public static void linkToOD(String odToLinkTxlPath, String linkToODPath){
 		
-		Map<String,List<String>> linkToOdMap=new HashMap<>();
+		File file = new File(odToLinkTxlPath);
+		List<String> list = Arrays.asList(file.list());
 		
-		BufferedReader reader = Main.getReader(inOdLink, "GBK");
-		String line = "";
-		try {
-			System.out.println(inOdLink + "  start reading....");
-			while((line = reader.readLine()) != null){
-				String[] data=line.split(";",3);
-				String inStationName=data[0].replaceAll("收费站", "");
-				String outStationName=data[1].replaceAll("收费站", "");
-				String OD = inStationName + "," + outStationName;//OD内部用逗号分隔，OD之间用分号分隔
-				String[] linkPath=data[2].split(",");
-				
-				for(int i=0; i<linkPath.length; i++){
-					if(linkToOdMap.containsKey(linkPath[i])){
-						List<String> list = linkToOdMap.get(linkPath[i]);
-						if(!list.contains(OD)){
-							list.add(OD);
-							linkToOdMap.put(linkPath[i], list);
+		for(int i = 0; i < list.size(); i++) {		
+			String pathIn = odToLinkTxlPath + list.get(i);
+			
+			Map<String,List<String>> linkToOdMap=new HashMap<>();
+			
+			BufferedReader reader = Main.getReader(pathIn, "utf-8");
+			String line = "";
+			try {
+				System.out.println(pathIn + "  start reading....");
+				while((line = reader.readLine()) != null){
+					String[] data = line.split(";",2);
+					String ODInfo = data[0].replaceAll("收费站", "");
+					String[] linkPath = data[1].split(",");
+					
+					for(int j=0; j<linkPath.length; j++){
+						if(linkToOdMap.containsKey(linkPath[j])){
+							List<String> ODList = linkToOdMap.get(linkPath[j]);
+							if(!ODList.contains(ODInfo)){
+								ODList.add(ODInfo);
+								linkToOdMap.put(linkPath[j], ODList);
+							}
+						}else{
+							List<String> ODList = new ArrayList<>();
+							ODList.add(ODInfo);
+							linkToOdMap.put(linkPath[j], ODList);
 						}
-					}else{
-						List<String> list=new ArrayList<>();
-						list.add(OD);
-						linkToOdMap.put(linkPath[i], list);
 					}
+					
 				}
+				System.out.println(pathIn + "  read finish!");
+			
+				String outPath = linkToODPath + list.get(i);
+				System.out.println(outPath + "  start writing....");
+				writeRes(linkToOdMap, outPath);
 				
-			}
-			System.out.println(inOdLink + "  read finish!");
-			System.out.println(outLinkToOd + "  start writing....");
-			
-			writeRes(linkToOdMap, outLinkToOd);
-			
-			System.out.println(outLinkToOd + "  write finish!");
-			reader.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
+				System.out.println(outPath + "  write finish!");
+				reader.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}	
+		}	
 	}
 	
 	public static void writeRes(Map<String, List<String>>map, String path){

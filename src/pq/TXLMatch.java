@@ -36,6 +36,7 @@ public class TXLMatch {
 		for(int i = 0; i < list.size(); i++) {		
 			String pathIn = odToLinkOriginPath + list.get(i);
 			int count = 0;
+			int index = list.get(i).indexOf("name");
 			
 			Map<String, String> odLinkOriMap = getODLinkOriginMap(pathIn);
 			Map<String, String> odPathMap = new HashMap<>();//最终生成的带有通行量的map,以  入口收费站，出口收费站，txl  为key，以路链构成的路径为value
@@ -52,7 +53,12 @@ public class TXLMatch {
 					String data[] = line.split(",", 4);
 					String enStationID = data[0];//入口收费站id
 					String exStationID = data[1];
+					String pro = GetProByCode.getRealeaser(data[2]);//省份
 					String txl = data[3];//通行量
+					
+					if(!pro.equals(list.get(i).substring(0, index))) {
+						continue;
+					}
 					
 					if(zhangXingTongMap.containsKey(enStationID) && zhangXingTongMap.containsKey(exStationID)) {
 						
@@ -62,6 +68,9 @@ public class TXLMatch {
 						//System.out.println(od);
 						if(odLinkOriMap.containsKey(od)) {
 							String path = odLinkOriMap.get(od);
+							if(odPathMap.containsKey(od + "," + txl)) {
+								System.out.println(line + "  " + od + "," + txl);
+							}
 							odPathMap.put(od + "," + txl, path);
 							count++;
 						}
@@ -76,7 +85,7 @@ public class TXLMatch {
 				reader.close();
 				System.out.println(odtxlPath + " read finish!");
 				
-				int index = list.get(i).indexOf("name");
+				
 				String outPath =  odToLinkPath + list.get(i).substring(0, index) + ".csv";
 				writeData(odPathMap, outPath);
 				System.out.println(count);
